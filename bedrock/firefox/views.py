@@ -272,6 +272,7 @@ def firefox_partners(request):
         request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
 
+# Note: this function is also used to determine display for dev-whatsnew
 def show_devbrowser_firstrun(version):
     match = re.match(r'\d{1,2}', version)
     if match:
@@ -409,7 +410,9 @@ class WhatsnewView(LatestFxView):
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
 
-        if version.startswith('37.'):
+        if show_devbrowser_firstrun(version):
+            template = 'firefox/dev-whatsnew.html'
+        elif version.startswith('37.'):
             template = 'firefox/whatsnew-fx37.html'
         elif version.startswith('36.'):
             if show_36_whatsnew_tour(oldversion):
