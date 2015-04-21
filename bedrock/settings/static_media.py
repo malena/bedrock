@@ -503,6 +503,28 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew_37-bundle.css',
     },
+    'firefox_whatsnew_38_video': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
+            'css/base/mozid-modal.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/whatsnew_38/common.less',
+            'css/firefox/whatsnew_38/whatsnew-video.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_38_video-bundle.css',
+    },
+    'firefox_whatsnew_38_en_us': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
+            'css/base/mozid-modal.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/whatsnew_38/common.less',
+            'css/firefox/whatsnew_38/whatsnew-en-us.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_38_en_us-bundle.css',
+    },
     'firefox_releasenotes': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1351,6 +1373,20 @@ PIPELINE_JS = {
             'js/firefox/whatsnew-fx37.js',
         ),
         'output_filename': 'js/firefox_whatsnew_fx37-bundle.js',
+    },
+    'firefox_whatsnew_38_video': {
+        'source_filenames': (
+            'js/base/mozilla-modal.js',
+            'js/firefox/whatsnew_38/whatsnew-video.js',
+        ),
+        'output_filename': 'css/firefox_whatsnew_38_video-bundle.js',
+    },
+    'firefox_whatsnew_38_en_us': {
+        'source_filenames': (
+            'js/base/mozilla-modal.js',
+            'js/firefox/whatsnew_38/whatsnew-en-us.js',
+        ),
+        'output_filename': 'css/firefox_whatsnew_38_en_us-bundle.js',
     },
     'geolocation': {
         'source_filenames': (

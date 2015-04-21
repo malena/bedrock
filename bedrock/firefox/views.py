@@ -100,6 +100,22 @@ INSTALLER_CHANNElS = [
     # 'nightly',  # soon
 ]
 
+LOCALE_SPRING_CAMPAIGN_VIDEOS = {
+    'de': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'en-US': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'en-GB': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'es-ES': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'es-AR': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'es-CL': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'es-ES': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'es-MX': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'fr': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'in': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'it': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'pl': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'ru': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+}
+
 
 def get_js_bundle_files(bundle):
     """
@@ -308,6 +324,17 @@ def show_36_whatsnew_tour(oldversion):
     return oldversion < Version('36.0')
 
 
+def show_38_0_5_whatsnew(version, locale):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
+
+    return version >= Version('38.0.5') and has_video
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -402,14 +429,29 @@ class WhatsnewView(LatestFxView):
             return HttpResponsePermanentRedirect(uri)
         return super(WhatsnewView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+
+        locale = l10n_utils.get_locale(self.request)
+
+        ctx['fx_38_video_url'] = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
+
+        return ctx
+
     def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
 
-        if version.startswith('37.'):
+        if show_38_0_5_whatsnew(version, locale):
+            if locale == 'en-US':
+                template = 'firefox/whatsnew_38/whatsnew-en-us.html'
+            else:
+                template = 'firefox/whatsnew_38/whatsnew-video.html'
+        elif version.startswith('37.'):
             template = 'firefox/whatsnew-fx37.html'
         elif version.startswith('36.'):
             if show_36_whatsnew_tour(oldversion):

@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew_38/whatsnew-base.html" %}
+
+{% add_lang_files "firefox/whatsnew_38" %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_whatsnew_38_en_us' %}
+{% endblock %}
+
+{% block page_title %}{{ _('From our hands to yours') }}{% endblock %}
+
+{% block body_id %}whatsnew-38-en-us{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  {% if fx_38_video_url %}
+    <div id="video-content">
+      <h2>{{ _('From our hands to yours') }}</h2>
+      <div id="modal-content">
+        <section class="video-embed">
+          <a class="video-thumbnail" href="{{ fx_38_video_url}}.mp4">
+            <span>{{ _('Watch the video') }}</span>
+          </a>
+          {{ video(fx_38_video_url + '.mp4', fx_38_video_url + '.webm', id='campaign-video') }}
+        </section>
+      </div>
+    </div>
+  {% endif %}
+</main>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_whatsnew_38_en_us' %}
+{% endblock %}
