@@ -43,7 +43,9 @@ set share_urls = {
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {{ fxfamilynav('dark') }}
+  {% call fxfamilynav('dark') %}
+    <button id="try-hello-nav" class="try-hello">{{ _('Try Hello now') }}</button>
+  {% endcall %}
 {% endblock %}
 
 {% block tabzilla_css %}{% endblock %}
@@ -56,6 +58,12 @@ set share_urls = {
     <div class="container">
       {#-- No-JS/IE fallback image --#}
       <h2 id="intro-image">{{ _('Firefox Hello') }}</h2>
+
+      <div id="debug">
+        $(window).width() before window.load: <span id="debug-window-width-before"></span>
+        <br>
+        $(window).width() after window.load: <span id="debug-window-width-after"></span>
+      </div>
 
       <div id="animation-stage">
         <!--[if gt IE 9]><!-->
