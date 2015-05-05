@@ -41,8 +41,8 @@ html, body {
     z-index: 2; // forces grain/noise :after bg to be under text
 }
 
-.arrow-link:after {
-    content: ' »';
+.arrow-link {
+    .trailing-arrow();
 }
 
 #header {
@@ -65,13 +65,37 @@ html, body {
         color: #fff;
         .font-size(60px);
         text-shadow: none;
-        margin: (@baseLine * 2) 0 (@baseLine * 1.5);
+        margin: (@baseLine * 2.5) 0 (@baseLine * 2.5);
     }
+
+    li {
+        float: left;
+        list-style-type: none;
+        margin: 0;
+        padding-right: (@baseLine * 1.5);
+    }
+
+    a {
+        color: #fff;
+        padding: 0 3px 4px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        .font-size(20px);
+        .transition(all 0.2s ease);
+
+        &:hover,
+        &:focus {
+            border-color: #fff;
+            text-decoration: none;
+        }
+    }
+}
+
+#form-locations {
+    margin: 5px 0 @baseLine;
 
     label {
         .font-size(@baseFontSize);
         font-weight: bold;
-        color: #a5dcff;
         text-transform: uppercase;
         margin-right: @baseLine / 2;
     }
@@ -95,11 +119,14 @@ html, body {
 }
 
 #purchase-device-sticky,
+#devices .button {
+    padding: (@baseLine / 2) @baseLine;
+    font-weight: normal;
+}
+
 .device-list .button {
     display: none;
     float: right;
-    padding: (@baseLine / 2) @baseLine;
-    font-weight: normal;
 
     &.visible {
         display: inline-block;
@@ -318,6 +345,10 @@ html[lang^="en"] #purchase-device-sticky {
     width: 220px;
     padding-top: 48px;
     margin-right: @baseLine;
+
+    &.wide {
+        width: 460px;
+    }
 }
 
 .features {
@@ -543,7 +574,6 @@ html[lang^="en"] #purchase-device-sticky {
 }
 
 // elements hidden from non-js users
-#page-title-js,
 .device-thumbnails,
 .color-picker,
 #form-locations,
@@ -554,13 +584,8 @@ html[lang^="en"] #purchase-device-sticky {
 }
 
 .js {
-    #page-title-js,
     #form-locations {
         display: block;
-    }
-
-    #page-title-nojs {
-        display: none;
     }
 
     .faq-button {
@@ -724,7 +749,13 @@ html[lang^="en"] #purchase-device-sticky {
         }
 
         h1 {
+            width: 250px;
             .font-size(40px);
+            margin: (@baseLine * 1.5) 0 @baseLine;
+        }
+
+        a {
+            .font-size(@largeFontSize);
         }
     }
 
@@ -954,7 +985,12 @@ html[lang^="en"] #purchase-device-sticky {
         }
 
         h1 {
+            width: 200px;
             .font-size(26px);
+        }
+
+        a {
+            .font-size(@baseFontSize);
         }
     }
 
