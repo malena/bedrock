@@ -56,28 +56,28 @@ Running tests
 
 To run the bedrock tests against your local bedrock instance, type::
 
-    casperjs test tests/functional --ssl-protocol=any --ignore-ssl-errors=yes
+    casperjs test tests/functional --config=tests/config.json
 
 This will run all test files found in the ``tests/functional`` directory and assumes you
 have bedrock running at ``localhost`` on port ```8000``
 
 To run a single test::
 
-    casperjs test tests/functional/home.js --ssl-protocol=any
+    casperjs test tests/functional/home.js --config=tests/config.json
 
 You can also easily run the tests against any bedrock environment. For example:
 
 To run tests against dev::
 
-    casperjs test tests/functional --domain=https://www-dev.allizom.org --ssl-protocol=any --ignore-ssl-errors=yes
+    casperjs test tests/functional --domain=https://www-dev.allizom.org --config=tests/config.json
 
 To run tests against stage::
 
-    casperjs test tests/functional --domain=https://www.allizom.org --ssl-protocol=any --ignore-ssl-errors=yes
+    casperjs test tests/functional --domain=https://www.allizom.org --config=tests/config.json
 
 To run tests against prod::
 
-    casperjs test tests/functional --domain=https://www.mozilla.org --ssl-protocol=any --ignore-ssl-errors=yes
+    casperjs test tests/functional --domain=https://www.mozilla.org --config=tests/config.json
 
 Debugging
 ---------

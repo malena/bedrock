@@ -1,0 +1,4 @@
+{
+  "ssslProtocol": "any",
+  "ignoreSslErrors": true
+}
