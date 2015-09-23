@@ -63,6 +63,15 @@
 
                 &.google-play {
                     text-align: left;
+                    a {
+                        padding: 0;
+                        line-height: 1.8;
+                        display: block;
+                    }
+                    a.download-other {
+                        .open-sans-light();
+                        .font-size(12px);
+                    }
                 }
 
                 &:nth-child(2) a {
@@ -481,7 +490,7 @@ html[dir="rtl"] #send-to-device-form {
         }
 
         footer {
-            padding: 0 (@baseLine / 2);
+            padding: 5px (@baseLine / 2);
 
             ul {
                 li {
