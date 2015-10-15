@@ -56,6 +56,9 @@ urlpatterns = (
     page('annualreport/2013', 'foundation/annualreport/2013/index.html'),
     page('annualreport/2013/faq', 'foundation/annualreport/2013/faq.html'),
 
+    page('annualreport/2014', 'foundation/annualreport/2014/index.html'),
+    page('annualreport/2014/faq', 'foundation/annualreport/2014/faq.html'),
+
     page('feed-icon-guidelines', 'foundation/feed-icon-guidelines/index.html'),
     page('feed-icon-guidelines/faq', 'foundation/feed-icon-guidelines/faq.html'),
 
